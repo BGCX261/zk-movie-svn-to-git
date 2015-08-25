@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+   <bean id="simpleBean" class="org.zkoss.zkspringessentials.beans.SimpleBean">
+        <constructor-arg value="Hello from a simple bean"></constructor-arg>
+   </bean>
+
+   <bean id="person" class="org.zkoss.zkspringessentials.beans.Person">
+        <property name="firstName" value="John"></property>
+        <property name="lastName" value="Woo"></property>
+   </bean>
+
+   <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="location">
+          <value>src/conf/test.properties</value>
+      </property>
+  </bean>
+
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="org.postgresql.Driver" />
+    <property name="url" value="${dataSource.url}" />
+    <property name="username" value="${dataSource.username}" />
+    <property name="password" value="${dataSource.password}" />
+    <property name="initialSize" value="${dataSource.initialSize}" />
+    <property name="maxActive" value="${dataSource.maxActive}" />
+  </bean>
+
+  <bean id="emf"
+      class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+      <property name="persistenceUnitName" value="DashboardPU"/>
+      <property name="jpaPropertyMap">
+            <map>
+                <entry key="eclipselink.weaving" value="false"/>
+            </map>
+      </property>
+  </bean>
+
+  <!-- see Spinrg in Action # 3 Page 152 -->
+  <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+      <property name="entityManagerFactory" ref="emf" />
+  </bean>
+
+  <bean id="jpaVendorAdapter"
+      class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+      <property name="database" value="POSTGRESQL" />
+      <property name="showSql" value="true" />
+      <property name="generateDdl" value="false" />
+      <property name="databasePlatform"
+          value="org.eclipse.persistence.platform.database.PostgreSQLPlatform"/>
+  </bean>
+
+  <bean id="projectServiceBean" class="tw.com.mt.dashboard.serviceImpl.ProjectServiceImpl">
+      <property name="projectDao" ref="projectDaoBean" />
+  </bean>
+
+  <bean id="projectDaoBean" class="tw.com.mt.dashboard.daoImpl.ProjectDaoImpl" />
+
+  <!-- see Spinrg in Action # 3 Page 144 -->
+  <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+</beans>

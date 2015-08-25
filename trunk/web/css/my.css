@@ -1,0 +1,25 @@
+/*
+    Document   : my
+    Created on : 2013/2/5, 下午 04:41:28
+    Author     : ken
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root {
+    display: block;
+}
+
+.movie-title {
+
+    font-size: 24px;
+    word-spacing: 2px;
+}
+
+.bigtext {
+
+    word-spacing: 2px;
+    letter-spacing: 1px;
+    text-indent: 4px;
+}
+

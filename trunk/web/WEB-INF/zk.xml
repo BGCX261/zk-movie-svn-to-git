@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk>
+<!--
+<session-config>
+	<session-timeout>1800</session-timeout>
+	<timeout-uri>/login.zul?err=timeout</timeout-uri>
+</session-config>
+<system-config>
+	<disable-event-thread>false</disable-event-thread>
+</system-config>
+
+<desktop-config>
+    <theme-uri>/css/default.css</theme-uri>
+    <theme-provider-class>it.ab.bugms.ui.zktheme.CacheableThemeProvider</theme-provider-class>
+</desktop-config>
+-->
+    <!--
+    <library-property>
+        <name>org.zkoss.web.preferred.locale</name>
+        <value>tw</value>
+    </library-property>
+    -->
+    <desktop-config>
+        <theme-uri>/css/my.css</theme-uri>
+    </desktop-config>
+</zk>

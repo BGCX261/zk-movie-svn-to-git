@@ -1,0 +1,22 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+介紹如何透過svn命令或工具進行svn操作
+
+
+= Details =
+
+*import:*
+
+
+ken@dover:/tmp/zk-movie-1.0$ svn import https://zk-movie.googlecode.com/svn/trunk/ --username ken@ken.idv.tw
+
+*check out:*
+
+ken@dover:/tmp$ svn checkout https://zk-movie.googlecode.com/svn/trunk/ zk-movie --username ken@ken.idv.tw
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
